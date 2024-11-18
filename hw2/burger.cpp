@@ -45,7 +45,7 @@ double second_central_diff (double coeff, double left, double center, double rig
     return coeff*(right - 2*center + left) / (pow(dx,2));
 }
 
-double lax_fried (double left, double right, double center)
+double lax_fried (double left, double center, double right)
 {
     return (pow(right,2) - pow(left,2)) / (2 * dx) - (right - 2*center + left) / (2 * dt);
 }
@@ -77,7 +77,7 @@ void run_simulation()
             // double adv = first_central_diff (soundSpeed, left, right);
             double adv = first_central_diff (u[i], left, right);
             // double adv = first_upwind (soundSpeed, left, u[i]);
-            // double adv = lax_fried (left, right, u[i]);
+            // double adv = lax_fried (left, u[i], right);
             double dif = second_central_diff (viscosity, left, u[i], right);
             
             // update u^n --> u^n+1
